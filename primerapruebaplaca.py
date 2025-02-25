@@ -20,7 +20,12 @@ for c in cnts:
         #cv2.drawContours(image, [c],0,(0,255,0),2)
         aspect_ratio= float(w)/h
         if aspect_ratio> 2.4:
-            cv2.drawContours(image, [c],0,(0,255,0),2)
+            placa= gray[y:y+h,x:x+w]
+            text=pytesseract.image_to_string(placa, config='--psm 11')
+            print('text= ',text)
+            cv2.imshow('placa',placa)
+            cv2.moveWindow('placa',980,10)
+           # cv2.drawContours(image, [c],0,(0,255,0),2)
 cv2.imshow('image',image)
 cv2.moveWindow('image',45,10)
 cv2.waitKey(0)
